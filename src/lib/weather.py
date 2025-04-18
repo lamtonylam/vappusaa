@@ -42,6 +42,16 @@ def get_filtered_weather_for_mayday():
     return filtered_weather
 
 
+def check_if_date_is_in_weather_data(date_str):
+    weather_dict = get_weather()
+
+    for time in weather_dict.keys():
+        if time[:10] == date_str:
+            return True
+
+    return False
+
+
 def will_it_rain(date_str):
     """
     args  - date_str: str - date in YYYY-MM-DD format
@@ -50,6 +60,10 @@ def will_it_rain(date_str):
     weather_dict = get_weather()
 
     will_it_rain = False
+
+    # Check if the date is in the weather data
+    if not check_if_date_is_in_weather_data(date_str):
+        return None
 
     for time, data in weather_dict.items():
         if time[:10] == date_str:
