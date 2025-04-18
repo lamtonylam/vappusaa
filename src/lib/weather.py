@@ -1,5 +1,11 @@
-import requests
 from datetime import datetime
+import requests_cache
+
+session = requests_cache.install_cache(
+    "weather_cache", expire_after=60
+)  # Cache for 1 minute
+
+import requests
 
 
 def get_weather():
