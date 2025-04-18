@@ -8,7 +8,7 @@ session = requests_cache.install_cache(
 import requests
 
 
-def get_weather(latitude=60.1582, longitude=24.9597):
+def fetch_weather_response(latitude=60.1582, longitude=24.9597):
     weather_url = (
         f"https://api.open-meteo.com/v1/forecast?"
         f"latitude={latitude}&longitude={longitude}"
@@ -16,6 +16,11 @@ def get_weather(latitude=60.1582, longitude=24.9597):
         "&timezone=Europe%2FMoscow&forecast_days=16"
     )
     weather_response = requests.get(weather_url)
+    return weather_response
+
+
+def get_weather(latitude=60.1582, longitude=24.9597):
+    weather_response = fetch_weather_response(latitude, longitude)
     weather_data = weather_response.json()
 
     weather_time_list = weather_data["hourly"]["time"]
