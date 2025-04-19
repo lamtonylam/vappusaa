@@ -6,6 +6,7 @@ session = requests_cache.install_cache(
 )  # Cache for 1 minute
 
 import requests
+from datetime import datetime
 
 
 def fetch_weather_response(latitude=60.1582, longitude=24.9597):
@@ -84,3 +85,19 @@ def will_it_rain(date_str, latitude=60.1582, longitude=24.9597):
                 break
 
     return will_it_rain
+
+
+def when_will_it_rain(date_str, latitude=60.1582, longitude=24.9597):
+
+    weather_dict = get_weather(latitude, longitude)
+    rain_times = []
+
+    # Check if the date is in the weather data
+    if not check_if_date_is_in_weather_data(date_str, latitude, longitude):
+        return None
+
+    for time, data in weather_dict.items():
+        if time[:10] == date_str and data["precipitation"] > 0:
+            rain_times.append(datetime.fromisoformat(time).time())
+
+    return rain_times

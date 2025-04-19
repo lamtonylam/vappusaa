@@ -33,6 +33,36 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card mt-5 shadow">
+                        <div class="card-body">
+                            <h2 class="text-center mb-4">Sataa</h2>
+                            <div class="mb-4">
+                                <p class="fs-5 mb-1 text-center">
+                                    <strong>Vappuaatto 30.4.</strong>
+                                </p>
+                                <ul class="list-unstyled text-center">
+                                    {% for time in may_eve_rain_times %}
+                                    <li>{{ time }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="fs-5 mb-1 text-center">
+                                    <strong>Vappupäivänä 1.5.</strong>
+                                </p>
+                                <ul class="list-unstyled text-center">
+                                    {% for time in may_day_rain_times %}
+                                    <li>{{ time }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <footer class="bg-light py-4 mt-auto">
             <div class="container text-center">
