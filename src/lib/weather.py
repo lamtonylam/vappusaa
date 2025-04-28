@@ -88,9 +88,8 @@ def will_it_rain(date_str, latitude=60.1582, longitude=24.9597):
 
 
 def when_will_it_rain(date_str, latitude=60.1582, longitude=24.9597):
-
     weather_dict = get_weather(latitude, longitude)
-    rain_times = []
+    rain_data = []
 
     # Check if the date is in the weather data
     if not check_if_date_is_in_weather_data(date_str, latitude, longitude):
@@ -98,6 +97,9 @@ def when_will_it_rain(date_str, latitude=60.1582, longitude=24.9597):
 
     for time, data in weather_dict.items():
         if time[:10] == date_str and data["precipitation"] > 0:
-            rain_times.append(datetime.fromisoformat(time).time())
+            rain_data.append({
+                "time": datetime.fromisoformat(time).time(),
+                "precipitation": data["precipitation"]
+            })
 
-    return rain_times
+    return rain_data
