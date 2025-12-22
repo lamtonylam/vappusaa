@@ -15,7 +15,7 @@ def index():
 
     if may_eve_rains == None:
         may_eve_rains = "No data available"
-    elif may_day_rains == None:
+    if may_day_rains == None:
         may_day_rains = "No data available"
 
     may_eve_rain_times = when_will_it_rain(f"{current_year}-04-30")
